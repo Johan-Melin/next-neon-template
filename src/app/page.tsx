@@ -1,9 +1,13 @@
-import Image from "next/image";
+import { sql } from "@/lib/db";
 
-export default function Home() {
-  return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  );
+export default async function Home() {
+  try {
+    await sql`SELECT 1`;
+    return <h1>db connected</h1>;
+  } catch (error) {
+    console.error(error);
+    return <h1>db not connected</h1>;
+  }
 }
+
+
